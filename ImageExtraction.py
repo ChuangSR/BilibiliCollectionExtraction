@@ -136,6 +136,7 @@ def main():
     if args.p:
         rootpath = args.p
     path = args.f
+    print(description)
     url = identify_qrcode(path)
     print("url解析成功！")
     act_id = get_act_id(url)
