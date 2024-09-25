@@ -121,10 +121,12 @@ def get_lottery_detail(act_id,lottery_id,root_path):
 def main():
     author = "创生R"
     version = "1.0.0"
+    github_url = "https://github.com/ChuangSR/BilibiliCollectionExtraction"
     description = f"""
         一个B站的收藏集图片下载器
         作者：{author}
         version: {version}
+        {github_url}
     """
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument("-f", help="一个包含收藏集二维码的图片，用于提取收藏集的url链接",required=True)
