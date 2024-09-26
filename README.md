@@ -12,3 +12,4 @@ ImageExtraction.exe -f xxx.jpg -p xxx
 ​		-f的参数为以图片形式分享的包含收藏集链接的二维码，这个参数是必须的，如
 ![8B82CD34F1F95B5BCC34171BC24E90BA](https://github.com/user-attachments/assets/f1325a70-5f66-4110-95d1-b267736beb88)
 ​	-p为图片的输出路径，默认为./img
+![Uploading 4EEB861FFFB73908986BE29D1450459F.png…]()
