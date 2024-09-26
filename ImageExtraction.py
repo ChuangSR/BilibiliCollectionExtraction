@@ -130,7 +130,7 @@ def main():
     """
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument("-f", help="一个包含收藏集二维码的图片，用于提取收藏集的url链接",required=True)
-    parser.add_argument("-p", help="指定一个图片的输出路径，默认为为./img",required=True)
+    parser.add_argument("-p", help="指定一个图片的输出路径，默认为为./img")
     args = parser.parse_args()
     rootpath = "./img"
     if args.p:
