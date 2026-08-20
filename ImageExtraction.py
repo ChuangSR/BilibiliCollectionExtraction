@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import re
+import sys
 import cv2
 from pyzbar.pyzbar import decode
 import requests
@@ -214,7 +215,7 @@ def get_lottery_detail(act_id, lottery_id, root_path, download=True, download_vi
 
 def main():
     author = "创生R"
-    version = "1.3.0"
+    version = "1.4.0"
     github_url = "https://github.com/ChuangSR/BilibiliCollectionExtraction"
     description = f"""
         一个B站的收藏集图片下载器
@@ -246,16 +247,15 @@ def main():
     act_id, lottery_id = resolve_act_info(url)
     print(f"必要参数解析完成！act_id={act_id}" + (f"，lottery_id={lottery_id}" if lottery_id else ""))
 
+    # 无论链接中是否携带 lottery_id，都下载该活动下全部关联收藏集
     if lottery_id:
-        print(f"检测到特定收藏集ID: {lottery_id}")
-        get_lottery_detail(act_id, lottery_id, rootpath, download=not args.only_data, download_video_flag=args.video)
-    else:
-        lottery_list = get_lottery_list(act_id, rootpath)
-        print("图片列表获取完成！")
-        print("由于b站服务器问题，下载速度可能会偏慢，请耐心等待！")
-        for item in lottery_list:
-            lottery_id = item["lottery_id"]
-            get_lottery_detail(act_id, lottery_id, rootpath, download=not args.only_data, download_video_flag=args.video)
+        print(f"检测到特定收藏集ID: {lottery_id}，将下载该活动下的全部关联收藏集（含本收藏集）")
+    lottery_list = get_lottery_list(act_id, rootpath)
+    print("图片列表获取完成！")
+    print("由于b站服务器问题，下载速度可能会偏慢，请耐心等待！")
+    for item in lottery_list:
+        lid = item["lottery_id"]
+        get_lottery_detail(act_id, lid, rootpath, download=not args.only_data, download_video_flag=args.video)
 
 
 if __name__ == "__main__":
